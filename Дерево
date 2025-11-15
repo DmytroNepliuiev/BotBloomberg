@@ -1,0 +1,62 @@
+project/
+│
+├── bot/                       # Discord бот
+│   ├── __init__.py
+│   ├── bot.py                 # Головний запуск бота
+│   ├── config.py              # Токени, ID каналів, ролей, адреса API
+│   ├── client.py              # Discord client / commands / interaction handler
+│   ├── contract_view.py       # View + кнопки + UI логіка
+│   ├── contract_controller.py # Робота контрактів через API бекенду
+│   ├── event_handlers.py      # Обробка івентів Discord
+│   └── utils/
+│       ├── permissions.py     # Перевірка ролей
+│       ├── formatting.py      # Утиліти для ембедів
+│       └── logger.py          # Логи до файлів / каналів
+│
+├── backend/                   # FastAPI сервер
+│   ├── __init__.py
+│   ├── main.py               # Точка входу FastAPI
+│   ├── config.py             # Налаштування бекенду (AWS, база, порти)
+│   ├── database.py           # Підключення до SQLite / PostgreSQL
+│   ├── models/               # Моделі БД (ORM)
+│   │   ├── __init__.py
+│   │   └── contract.py       # Модель контракту
+│   ├── schemas/              # Pydantic-схеми
+│   │   ├── __init__.py
+│   │   └── contract_schema.py
+│   ├── services/             # Бізнес-логіка
+│   │   ├── __init__.py
+│   │   └── contract_service.py
+│   ├── routes/               # Маршрути API
+│   │   ├── __init__.py
+│   │   └── contract_routes.py  # /contracts/open, /contracts/close, /contracts/status …
+│   ├── websocket/            # Якщо буде live-звʼязок з оверлеєм
+│   │   ├── __init__.py
+│   │   └── ws_manager.py
+│   └── utils/
+│       ├── logger.py
+│       └── validators.py
+│
+├── client/overlay/            # Програма поверх гри
+│   ├── README.md
+│   ├── api.py                 # Запити до бекенду
+│   ├── auth.py                # Авторизація через Discord OAuth2
+│   ├── ui.py                  # Інтерфейс (PySide6 / QT / overlay)
+│   ├── state_manager.py       # Стан клієнта
+│   ├── config.py
+│   └── assets/
+│       └── icons/             # Іконки кнопок, контрактів
+│
+├── shared/                    # Спільний код між backend/bot/client
+│   ├── contract_types.py      # Типи контрактів, ID, настройки
+│   └── constants.py
+│
+├── scripts/                   # Скрипти для AWS
+│   ├── install_dependencies.sh
+│   ├── setup_systemd_bot.sh   # Сервіс для Discord бота
+│   ├── setup_systemd_api.sh   # Сервіс для FastAPI
+│   └── update.sh              # Авто оновлення з git
+│
+├── requirements.txt
+├── README.md
+└── .env                       # Токени бота, Discord OAuth, база, API_URL
