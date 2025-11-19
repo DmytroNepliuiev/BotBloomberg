@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 
 intents = discord.Intents.default()
 intents.members = True
-intents.message_content = False  # не потрібно зазвичай, став True якщо треба
+intents.message_content = True  # не потрібно зазвичай, став True якщо треба
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
